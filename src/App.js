@@ -12,10 +12,20 @@ function App() {
   const [error, setError] = useState("")
   useEffect(() => {
     const fetchData = async () => {
-      const reqData = await axios.get(`/current.json?key=b270ea01f6ee434dbfe160055221912&q=${search}`)
+      // const reqData = await axios.get(`/current.json?key=b270ea01f6ee434dbfe160055221912&q=${search}`)
+      // .then(setError(""))
+      //   .catch(err => setError(err.response.data.error.message));
+      // setData([reqData.data]);
+
+      fetch(`http://api.weatherapi.com/v1/current.json?key=b270ea01f6ee434dbfe160055221912&q=${search}`)
+      .then(response => response.json())
+      .then(data => {
+        setData([data])
+      })
       .then(setError(""))
-        .catch(err => setError(err.response.data.error.message));
-      setData([reqData.data]);
+      .catch(err => {
+          console.log(err);
+      })
     }
     fetchData();
   }, [search])
