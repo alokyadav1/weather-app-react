@@ -28,7 +28,7 @@ function App() {
   const handleChange = (e) => {
     setQuery(e.target.value);
   }
-  if (!data) return null
+  if (!data) return "<h1>Loading...</h1>"
   return (
     <div>
       <Header
