@@ -3,6 +3,7 @@ import Header from './components/Header.jsx';
 import WeatherCard from './components/WeatherCard.jsx';
 import Error from './components/Error.jsx';
 import Loader from './components/Loader.jsx';
+import ForeCast from './components/ForeCast.jsx';
 import './App.css';
 import axios from "./components/axios.js"
 
@@ -11,12 +12,12 @@ function App() {
   const [search, setSearch] = useState("auto:ip");
   const [query, setQuery] = useState("");
   const [error, setError] = useState("")
-  const [suggestion,setSuggestion] = useState([]);
+  const [suggestion, setSuggestion] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       setData(null);
-      const reqData = await axios.get(`/current.json?key=b270ea01f6ee434dbfe160055221912&q=${search}`)
+      const reqData = await axios.get(`/forecast.json?key=b270ea01f6ee434dbfe160055221912&q=${search}&days=1&aqi=no&alerts=no`)
         .then(setError(""))
         .catch(err => setError(err.response.data.error.message));
       setData([reqData.data]);
@@ -26,15 +27,13 @@ function App() {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      console.log(query)
       const fetchSuggestionData = async () => {
-        if(!query){
+        if (!query) {
           setSuggestion([]);
           return;
         };
         const reqData = await axios.get(`/search.json?key=b270ea01f6ee434dbfe160055221912&q=${query}`)
         setSuggestion(reqData.data);
-        console.log(suggestion);
       }
       fetchSuggestionData()
     }, 1000)
@@ -49,8 +48,7 @@ function App() {
     setQuery(e.target.value);
   }
 
-  const handleListClick = (name)=> {
-    console.log("list,",name);
+  const handleListClick = (name) => {
     setSearch(name)
     setQuery("")
     setSuggestion([])
@@ -81,7 +79,7 @@ function App() {
       />
       {
         <div className='main-container'>
-          {
+          <div>
             <WeatherCard
               cityName={data[0].location.name}
               temp={data[0].current.temp_c}
@@ -94,10 +92,14 @@ function App() {
               humidity={data[0].current.humidity}
               isDay={data[0].current.is_day}
             />
-          }
+          </div>
+          <div className='text-white'>
+              <ForeCast
+                forecast={data[0].forecast.forecastday}
+              />
+          </div>
         </div>
       }
-      <p>hello</p>
     </div>
   );
 }

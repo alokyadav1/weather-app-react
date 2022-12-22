@@ -1,6 +1,5 @@
 import React from 'react';
 function Header({ handleSearch, handleChange, query, cityList, handleListClick }) {
-    console.log(cityList);
     return (
         <div className='relative bg-slate-600 text-center'>
             <div className='header text-center p-3'>
@@ -9,7 +8,7 @@ function Header({ handleSearch, handleChange, query, cityList, handleListClick }
                     <div>
                         <input type="text" className='search-box shadow-lg appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' placeholder='Enter City Name' value={query} onChange={handleChange} />
                         <div className='auto-suggestion relative'>
-                            <ul className=' absolute top-0 left-0 z-10 bg-white w-full shadow-2xl text-left text-slate-700'>
+                            <ul className=' absolute top-0 left-0 z-10 bg-white w-full shadow-2xl text-left text-slate-700 rounded-lg text-sm'>
                                 {
                                     cityList.map(el => (
                                         <li onClick={() => handleListClick(el.name)}>{el.name},{el.country}</li>

@@ -1,8 +1,10 @@
 import React from 'react';
+import NotFound from "../assets/images/notFound.jpg"
 function Error({errorMessage}) {
     return ( 
-        <div>
-            <h1 className=' font-extrabold text-3xl text-center bg-purple-700 text-white p-3 rounded-lg m-3 shadow-2xl'>{errorMessage}</h1>
+        <div className='bg-white shadow-2xl'>
+            <img src={NotFound} alt="" />
+            <h1 className=' font-extrabold text-3xl text-center p-3 rounded-lg m-3'>{errorMessage}</h1>
         </div>
      );
 }
