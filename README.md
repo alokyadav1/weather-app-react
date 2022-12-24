@@ -42,7 +42,7 @@ module.exports = {
 Before running this app we need to do some API configuration
 
 Go to `https://www.weatherapi.com/` and generate an API key for your application.
-copy the generated API key and paste it in `Apikey` variable which is under `src/App.js` file on line 13
+copy the generated API key and paste it in `Apikey` variable which is under `src/App.js` file on line 11
 
 # Run App
 
