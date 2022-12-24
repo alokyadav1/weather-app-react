@@ -8,7 +8,7 @@ Run the following command to clone the repository
 
 ---
 
-Go Inside the weather-app-react folder and install the required packages
+Go Inside the `weather-app-react` folder and install the required packages
 
 ```
  cd weather-app-react
