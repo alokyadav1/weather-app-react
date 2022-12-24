@@ -55,4 +55,4 @@ Run the app using the following command
 
 # Live Preview
 You can check the live preview of the app on the following link
-`https://weather-app-b29a2.web.app/`
+[Weather App](https://weather-app-b29a2.web.app/)
