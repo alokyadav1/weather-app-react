@@ -8,6 +8,7 @@ import './App.css';
 import axios from "./components/axios.js"
 
 function App() {
+  const Apikey = "YOUR API KEY"
   const [data, setData] = useState(null);
   const [search, setSearch] = useState("auto:ip");
   const [query, setQuery] = useState("");
@@ -17,7 +18,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       setData(null);
-      const reqData = await axios.get(`/forecast.json?key=b270ea01f6ee434dbfe160055221912&q=${search}&days=1&aqi=no&alerts=no`)
+      const reqData = await axios.get(`/forecast.json?key=${Apikey}&q=${search}&days=1&aqi=no&alerts=no`)
         .then(setError(""))
         .catch(err => setError(err.response.data.error.message));
       setData([reqData.data]);
@@ -32,7 +33,7 @@ function App() {
           setSuggestion([]);
           return;
         };
-        const reqData = await axios.get(`/search.json?key=b270ea01f6ee434dbfe160055221912&q=${query}`)
+        const reqData = await axios.get(`/search.json?key=${Apikey}&q=${query}`)
         setSuggestion(reqData.data);
       }
       fetchSuggestionData()
